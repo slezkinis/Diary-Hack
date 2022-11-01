@@ -2,7 +2,6 @@ from datacenter.models import Mark
 from datacenter.models import Chastisement
 from django.core.exceptions import MultipleObjectsReturned
 from django.core.exceptions import ObjectDoesNotExist
-from random import choice
 from datacenter.models import Commendation
 from datacenter.models import Schoolkid
 from datacenter.models import Lesson
@@ -14,24 +13,24 @@ def create_commendation(name, subject, commendations):
         schoolkid = Schoolkid.objects.get(
             full_name__contains=name
         )
-        lesson = Lesson.objects.filter(
-            year_of_study=schoolkid.year_of_study,
-            group_letter=schoolkid.group_letter,
-            subject__title=subject
-        ).order_by('-date').first()
-        Commendation.objects.create(
-            schoolkid=schoolkid,
-            subject=lesson.subject,
-            teacher=lesson.teacher,
-            text=random.choice(commendations),
-            created=lesson.date
-        )
     except ObjectDoesNotExist:
         print('Такого ученика или урока не существует!')
         return
     except MultipleObjectsReturned:
         print('Существует несколько учеников с таким именем!')
         return
+    lesson = Lesson.objects.filter(
+        year_of_study=schoolkid.year_of_study,
+        group_letter=schoolkid.group_letter,
+        subject__title=subject
+    ).order_by('-date').first()
+    Commendation.objects.create(
+        schoolkid=schoolkid,
+        subject=lesson.subject,
+        teacher=lesson.teacher,
+        text=random.choice(commendations),
+        created=lesson.date
+    )
 
 
 def remove_chastisements(schoolkid):
