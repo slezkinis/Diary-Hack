@@ -2,21 +2,6 @@
 
 В этом репозитории лежат модули, которые помогают повысить успеваемостть в школе. Здесь можно: убрать замечания, исправить все плохие оценки, добавить реалистичную похвалу от учителя.
 
-## Перед запуском
-
-Прежде, чем использовать эти функции обязательно нужно импортировть нужные модели:
-```python
-from datacenter.models import Mark
-from datacenter.models import Chastisement
-from django.core.exceptions import MultipleObjectsReturned
-from django.core.exceptions import ObjectDoesNotExist
-from random import choice
-from datacenter.models import Commendation
-from datacenter.models import Schoolkid
-from datacenter.models import Subject
-from datacenter.models import Lesson
-```
-
 ## Описание каждого модуля
 
 1. Функция `create_commendation(name, subject)` создаёт похвалу от учителя. В поле `name` нужно указать своё имя и фамилию, в поле `subject` - название предмета, по которому нужно добавить похвалу. Вот пример запуска:
