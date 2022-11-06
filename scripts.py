@@ -1,9 +1,10 @@
-from datacenter.models import Mark
+import random
+
 from datacenter.models import Chastisement
 from datacenter.models import Commendation
-from datacenter.models import Schoolkid
 from datacenter.models import Lesson
-import random
+from datacenter.models import Mark
+from datacenter.models import Schoolkid
 
 
 COMMENDATIONS = [
