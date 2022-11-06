@@ -37,7 +37,7 @@ COMMENDATIONS = [
     'Я вижу, как ты стараешься!',
     'Ты растешь над собой!',
     'Ты многое сделал, я это вижу!',
-    'Теперь у тебя точно все получится!'
+    'Теперь у тебя точно все получится!',
 ]
 
 
@@ -61,7 +61,7 @@ def create_commendation(name, subject):
             subject=lesson.subject,
             teacher=lesson.teacher,
             text=random.choice(COMMENDATIONS),
-            created=lesson.date
+            created=lesson.date,
         )
 
 
@@ -71,7 +71,7 @@ def remove_chastisements(schoolkid):
 
 
 def fix_marks(schoolkid):
-    bad_marks = Mark.objects.filter(
+    Mark.objects.filter(
         schoolkid=schoolkid,
-        points__lt=4
+        points__lt=4,
     ).update(points=5)
